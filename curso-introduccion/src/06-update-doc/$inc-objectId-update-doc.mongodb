@@ -1,0 +1,13 @@
+use('platzi_store');
+
+// insertar varios documentos
+db.products.updateOne(
+  // query para encontrar el elemento utilizando la id generada por mongo
+  {_id: ObjectId('65a969847ceea689cf55e999')}, 
+  // operador para realizar los cambios
+  {
+    $inc: { // permite incrementar el valor numerico del campo pasado
+      price: 630,
+    }
+  }
+);

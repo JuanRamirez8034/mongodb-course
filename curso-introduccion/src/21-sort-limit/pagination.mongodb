@@ -1,0 +1,7 @@
+use('platzi_store');
+
+// obtener todas las categorias limitando el numero de documentos 
+// a 4 y partiendo desde la posicón siguiente a l 3
+db.categories.find() // obtener todo
+             .skip(3) // desde la posición 3
+             .limit(4) // limitado en 4

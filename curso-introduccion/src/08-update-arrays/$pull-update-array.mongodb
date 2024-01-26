@@ -1,0 +1,21 @@
+use("platzi_store");
+
+// db.inventory.updateMany(
+//   { /** en blanco obtiene todos los elementos */},
+//   {
+//     $pull: { // eliminar un elemento de un array
+//       tags: 'book'
+//     }
+//   }
+// );
+
+db.inventory.updateMany(
+  { /** en blanco obtiene todos los elementos */},
+  {
+    $pull: { // eliminar varios elementos de un array
+      tags: {
+        $in: ['school', 'appliance']
+      }
+    }
+  }
+);

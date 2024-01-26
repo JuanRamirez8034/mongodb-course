@@ -1,0 +1,14 @@
+use('sample_training');
+
+db.zips.find({ city: 'CLEVELAND' }).count();
+
+db.zips.updateMany(
+  // qyuery para la busqueda
+  { city: "CLEVELAND" },
+  // OPERADOR
+  {
+    $set: {
+      altAttr: "Hello!"
+    }
+  }
+)

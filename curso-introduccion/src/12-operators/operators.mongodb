@@ -1,0 +1,18 @@
+use('platzi_store');
+
+// utilizando $gt ">" (greater than) y $gte ">=" (greater than equal)
+// quivalente a los operadores de "mayor que" y "mayor o igual que"
+db.inventory.find({ qty: { $gt : 20 } }); // obtener los productos con la cantidad mayor a 20
+db.inventory.find({ qty: { $gte : 20 } }); // obtener los productos con la cantidad mayor o igual a 20
+
+// utilizando $lt "<" (less than) y $lte "<=" (less than equal)
+// equivalente a los operadores de "menor que" y "mayor o igual que"
+db.inventory.find({ qty: { $lt : 20 } }); // obtener los productos con la cantidad menor a 20
+db.inventory.find({ qty: { $lte : 20 } }); // obtener los productos con la cantidad menor o igual a 20
+
+// JOIN operators
+// obtener los productos con la cantidad mayor o igual a 20 y menor o igual a 25 
+db.inventory.find({ qty: { $gte : 20, $lte : 25 } }); 
+// obtener los productos con la cantidad mayor o igual a 20 y menor o igual a 25 y que su codigo del item sea distinto a 000
+db.inventory.find({ qty: { $gte : 20, $lte : 25 }, 'item.code' : { $ne : '000' } }); 
+

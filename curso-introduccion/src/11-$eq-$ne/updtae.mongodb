@@ -1,0 +1,14 @@
+use('platzi_store');
+
+// actualizar todo lo que sea distinto a 20
+db.inventory.updateMany(
+  // query operador
+  { qty : { $ne : 20 }},
+  // aumentar dos
+  {
+    // update operador
+    $inc : {
+      qty : 2
+    }
+  }
+);

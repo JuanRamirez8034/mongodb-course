@@ -1,0 +1,26 @@
+use('platzi_store');
+
+// insertado convencional
+db.iot.insertOne({
+  sensor: "A001",
+  date: "2024-01-23",
+  readings: [123]
+});
+
+// para determinar si existe podria incluir varias validaciones 
+// y luego actualizar o crear
+db.iot.find({
+  sensor: "A001",
+  date: "2024-01-23",
+}).count();
+
+// luego actualizamos
+db.iot.update({
+  sensor: "A001",
+  date: "2024-01-23",
+},
+{
+  $push: {
+    readings: 456
+  }
+});

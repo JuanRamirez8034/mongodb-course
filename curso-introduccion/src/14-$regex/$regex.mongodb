@@ -1,0 +1,11 @@
+use('platzi_store');
+
+// econtrar todos los documentos que en su descripción tengan la palabra "line", 
+db.inventory.find({ 'item.description' : { $regex : /line/ } });
+db.inventory.find({ 'item.description' : { $regex : /LINE/i } }); // la letra "i" al final indica que no haya sensibilidad a las mayusculas y numusculas
+db.inventory.find({ 'item.description' : { $regex : /LINE$/i } }); // el simbolo "$" al final indica que solo las coincidencias que terminen en esa palabra
+
+// econtrar todos los documentos que inicien en la palabra "single"
+db.inventory.find({ 'item.description' : { $regex : /^single/i } }); // el simbolo "^" al incio indica que solo las coincidencias que empiecen en esa palabra
+// encontrar todos los documentos que inicien en "s" pero incuyendo los saltos de linea
+db.inventory.find({ 'item.description' : { $regex : /^s/im } }); // la letra "m" indica que pueden haber saltos de linea y encuentra tambien las coincidencias en los demas parrafos

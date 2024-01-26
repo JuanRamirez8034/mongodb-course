@@ -1,0 +1,47 @@
+use('sample_training');
+
+// Utilizando el operador operador $and ("AND") implicito - Obtiene los elementos que coincidan con todos los especificados
+db.inspections.find({
+  sector : 'Tax Preparers - 891',
+  result : 'Violation Issued'
+}).count();
+
+// utilizando el operador $and ("AND") de forma explicita
+db.inspections.find({
+  $and : [
+    { sector: 'Tax Preparers - 891' },
+    { result : 'Violation Issued' }
+  ]
+}).count();
+
+// utilizando el operador $or ("OR") - Obtiene los elementos coincidentes con uno u otro
+db.inspections.find({
+  $or : [
+    { sector: 'Tax Preparers - 891' },
+    { result : 'Violation Issued' }
+  ]
+}).count();
+
+// utilizando el operador $nor ("NOR") - Obtiene los elementos distintos a los especificados
+db.inspections.find({
+  $nor : [
+    { sector: 'Tax Preparers - 891' },
+    { result : 'Violation Issued' }
+  ]
+}).count();
+
+// utilizando el operador $nor ("NOR") - Obtiene los elementos distintos a los especificados
+db.inspections.find({
+  $nor : [
+    { result: 'No Violation Issued' },
+    { result : 'Violation Issued' }
+  ]
+}, {
+  _id : 0,
+  result : 1
+});
+
+// utilizando el operador $not ("!") - Obtiene los elementos que sean distintos al especificado
+db.inspections.find({
+  result: { $not : { $regex : /No Violation Issued/ } }
+});

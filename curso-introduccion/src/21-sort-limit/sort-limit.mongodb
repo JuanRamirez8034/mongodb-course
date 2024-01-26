@@ -1,0 +1,6 @@
+use('sample_training');
+
+// obtener la información donde su población sea mayor o igual a 100 ordenando de forma ascendente y limitado a 2
+db.zips.find({ pop : { $gte : 100 } })
+.sort({ pop : 1 }) // orden '(1) -> A-Z'  -  '(-1) -> Z-A'
+.limit(2) // Limite de la respuesta

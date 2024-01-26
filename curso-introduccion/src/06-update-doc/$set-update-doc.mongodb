@@ -1,0 +1,13 @@
+use('platzi_store');
+
+// insertar varios documentos
+db.products.updateOne(
+  // query para encontrar el elemento
+  {_id: 3}, 
+  // operador para realizar los cambios
+  {
+    $set: { // permite modificar campos directamente
+      name: "PC clasic New X10",
+    }
+  }
+);

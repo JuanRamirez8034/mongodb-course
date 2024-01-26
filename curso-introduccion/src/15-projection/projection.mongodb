@@ -1,0 +1,12 @@
+use('sample_training');
+
+db.trips.find(
+  // query - fintro consulta
+  { tripduration : { $gte : 500} },
+  // projection - datos a mostrar en la consulta
+  // el cero "0" omite y el uno "1" agrega el atributo
+  {
+    tripduration: 1,
+    usertype: 1
+  }
+)

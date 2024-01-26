@@ -1,0 +1,27 @@
+use('platzi_store');
+
+// utilizando operador $in (sirve para valores y arreglos)
+// obtener todos los productos que en su inventario tengan 20 o 25
+db.inventory.find({ qty : { $in : [20, 25] } }); // operación or
+// obtener todos los productos que sus etiquetas (tags) contengan 'book' o 'electronics'
+db.inventory.find({ tags : { $in : ['book', 'electronics'] } }); // operación or
+
+// utilizando operador $nin (sirve para valores y arreglos)
+// obtener todos los productos que en su inventario sea distinto a 20 o 25
+db.inventory.find({ qty : { $nin : [20, 25] } }); // operación or
+// obtener todos los productos que sus etiquetas (tags) no contengan 'book' o 'electronics'
+db.inventory.find({ tags : { $nin : ['book', 'electronics'] } }); // operación or
+
+// utilizando el operador $all (solo funciona en arrays) 
+// obtener todos los productos que contenagan en sus etiquetas 'book' y 'school', sin importar su orden
+db.inventory.find({ tags : { $all : ['book', 'school'] } }); // operador &&
+
+// utilizando el operador $size (solo funciona en arrays)
+// obtener todos los productos que en sus etiquetas contengan un tamaño de dos elementos
+db.inventory.find({ tags: { $size : 2 } });
+
+// utilizando el operador $elementMath (sirve para arreglos de objetos)
+// obtener todas las encuestas que en su resultado el producto sea 'xyz' y tengan una puntuación igual o mayor a 7
+db.survey.find({ results: { $elemMatch : { product: 'xyz', score: { $gte : 7} } } });
+// obtener todas las encuestas que en sus resultados tengan un producto contenga una letra 'z'
+db.survey.find({ results: { $elemMatch : { product: { $regex: 'z' } } } });

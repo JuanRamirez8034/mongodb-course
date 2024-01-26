@@ -1,0 +1,6 @@
+use('platzi_store');
+
+// eliminar un unico documento que cumpla la condición
+db.products.deleteOne({
+  _id: 1
+});

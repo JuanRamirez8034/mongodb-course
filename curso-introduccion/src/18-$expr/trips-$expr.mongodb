@@ -1,0 +1,20 @@
+use('sample_training');
+
+// db.trips.find();
+
+// encontrar todas las rutas que iniciaron y terminaron en el mismmos lugar
+db.trips.find({
+  $expr : {
+    $eq : ['$start station id', '$end station id']
+  }
+}).count();
+
+// encontrar todas las rutas que iniciaron y terminaron en el mismmos lugar y tuvieron una duración de más de 200
+db.trips.find({
+  $expr : {
+    $and : [
+      {$eq : ['$start station id', '$end station id'] },
+      { $gte : [ '$tripduration', 200] }
+    ]
+  }
+}).count();

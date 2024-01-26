@@ -1,0 +1,15 @@
+use('platzi_store');
+
+// utilizando $eq -> "equal" (este operador viene de form implicita)
+db.inventory.find({ qty : 20 });
+// forma explicita
+db.inventory.find({ qty : { $eq : 20 } });
+
+// buscando en un subdocumento
+db.inventory.find({ 'item.code' : '123' });
+// busqueda de forma explicita
+db.inventory.find({ 'item.code' : { $eq : '123'} });
+
+
+// utilizando $ne -> "noEqual" (obtiene todo lo que no sea igual a lo aportado)
+db.inventory.find({ qty : { $ne : 20 } });

@@ -1,0 +1,18 @@
+use('platzi_store');
+
+// obtener los presupuestos en los cuales el monto sea igual o mayor a 100
+db.monthlyBudget.find({ spent : { $gte : 100 } });
+
+// utilizando $expr para realizar la misma busqueda
+db.monthlyBudget.find({
+  $expr : {
+    $gte : [ '$spent', 100 ]
+  }
+});
+
+// utilizando $expr buscar los presupuestos que fueron inferiror al gasto (presupuestos que se pasaron del limite)
+db.monthlyBudget.find({
+  $expr : {
+    $gte : [ '$spent', '$budget' ]
+  }
+});

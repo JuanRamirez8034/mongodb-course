@@ -1,0 +1,21 @@
+use('sample_training');
+
+db.trips.find({ 'start station location.type' : { $regex : /point/i} });
+
+// obteniendo las empresas que en sus relaciones la primera persna sea de apellido Zuckerberg
+db.companies.find({
+  'relationships.0.person.last_name' : 'Zuckerberg'
+})
+.projection({
+  name: 1,
+  relationships: 1
+});
+
+// contando el numero de compañias que en sus miembros tengan como primer nombre 'Mark
+db.companies.find({
+  relationships : {
+    $elemMatch : {
+      'person.first_name' : 'Mark'
+    }
+  }
+}).count();

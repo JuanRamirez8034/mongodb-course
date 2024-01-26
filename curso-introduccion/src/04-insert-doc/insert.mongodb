@@ -1,0 +1,11 @@
+use('platzi_store');
+
+db.products.insertOne({
+  name: "Pc gamer RX056",
+  price: 32000
+});
+
+db.products.insertOne({
+  name: "Pc clasic Hp5757",
+  price: 20000
+});

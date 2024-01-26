@@ -1,0 +1,6 @@
+use('platzi_store');
+
+// eliminar todos los elementos que cumplan la condición
+db.products.deleteMany({
+  price: 100
+});
