@@ -1,0 +1,8 @@
+use('platzi_store');
+
+db.orders.insertOne({
+  userId: ObjectId('65ba6229b65cd53673d2c1cc'),
+  date: '05/02/2024',
+  items: [],
+  total: 0, // valor a incrementar
+});

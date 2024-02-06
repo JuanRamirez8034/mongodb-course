@@ -1,0 +1,17 @@
+use('platzi_store');
+
+db.stores.find();
+
+db.stores_details.find();
+
+// realizando una consulta con relación 1-1 referencial
+db.stores.aggregate([
+  {
+    $lookup: {
+      from: 'stores_details',  // Nombre de la colección a referenciar
+      localField: 'storeId',   // nombre del campo o atributo local a referenciar
+      foreignField: 'storeId', // nombre del campo o atributo a referencial el el documento referenciado
+      as: 'details',           // nombre que recibe dentro de la respuesta los documentos referenciados
+    }
+  }
+]);

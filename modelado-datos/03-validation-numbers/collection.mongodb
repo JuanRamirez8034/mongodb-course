@@ -1,0 +1,39 @@
+use('platzi_store');
+
+db.products.drop();
+
+// crear un modelo de datos para una colección de usuarios
+db.createCollection('products', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object', // tipo para las propiedades
+      required: ['name'], // campos requeridos
+      properties: {
+        name: {
+          bsonType: 'string',
+        },
+        sizes: { // arreglo de strings
+          bsonType: 'array',
+          items: {
+            bsonType: 'string'
+          },
+          minItems: 1, // minimo un items para el arreglo
+          uniqueItems: true, // items unicos y no repetidos
+        },
+        // subdocumento
+        category: {
+          bsonType: 'object',
+          required: ['name'],
+          properties: {
+            name: {
+              bsonType: 'string',
+            },
+            image: {
+              bsonType: 'string',
+            }
+          }
+        }
+      }
+    }
+  }
+});

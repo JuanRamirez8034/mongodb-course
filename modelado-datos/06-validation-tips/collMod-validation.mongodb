@@ -1,0 +1,44 @@
+use('platzi_store');
+
+db.getCollectionInfos();
+
+// corriendo una actualización en el esquema sin c¡necesidad de eliminar la colección completa
+db.runCommand({
+  collMod: 'users',
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',              // tipo para las propiedades
+      required: ['_id', 'email', 'password', 'role'], // campos requeridos
+      additionalProperties: false, // Evitando que se puedan agregar propiedades no definidas en el esquema
+      properties: {
+        _id: { // en caso de colocar 'additionalProperties:false' la _id hay que colocarla como reguerida
+          bsonType: 'objectId',
+        },
+        name: {
+          bsonType: 'string',
+        },
+        last_name: {
+          bsonType: 'string',
+        },
+        email: {
+          bsonType: 'string',
+        },
+        password: { // validando con una expresion regular
+          bsonType: 'string',
+          pattern: '^[a-zA-Z0-9*.@]{6,}$'
+        },
+        age: { // Validaciones numeros
+          bsonType: 'number',
+          minimum: 18,
+          maximum: 80,
+        },
+        isSingle: { // validaciones booleanos
+          bsonType: 'bool',
+        },
+        role: { // validaciones enum
+          enum: ['customer', 'seller', 'admin'],
+        }
+      }
+    }
+  }
+});

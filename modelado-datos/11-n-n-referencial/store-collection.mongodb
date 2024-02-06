@@ -1,0 +1,30 @@
+use('platzi_store');
+
+db.stores.drop();
+
+db.createCollection('stores', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      additionalProperties: false, 
+      required: ['_id'],
+      properties: {
+        _id: {
+          bsonType: 'objectId'
+        },
+        name: {
+          bsonType: 'string',
+        },
+        product_ids: {
+          bsonType: 'array',
+          items: {
+            bsonType: 'objectId',
+          }
+        },
+        storeId: {
+          bsonType: 'string',
+        }
+      }
+    }
+  }
+});

@@ -1,0 +1,38 @@
+use('platzi_store');
+
+// db.users.drop();
+
+// crear un modelo de datos para una colección de usuarios
+db.createCollection('users', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',              // tipo para las propiedades
+      required: ['email', 'password', 'role'], // campos requeridos
+      properties: {
+        name: {
+          bsonType: 'string',
+        },
+        last_name: {
+          bsonType: 'string',
+        },
+        email: {
+          bsonType: 'string',
+        },
+        password: {
+          bsonType: 'string',
+        },
+        age: { // Validaciones numeros
+          bsonType: 'number',
+          minimum: 18,
+          maximum: 80,
+        },
+        isSingle: { // validaciones booleanos
+          bsonType: 'bool',
+        },
+        role: { // validaciones enum
+          enum: ['customer', 'seller', 'admin'],
+        }
+      }
+    }
+  }
+});

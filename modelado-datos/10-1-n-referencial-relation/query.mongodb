@@ -1,0 +1,24 @@
+use('platzi_store');
+
+// buscando la información del usuario y sus ordenes con el mongo query lenguaje
+db.users.findOne({_id: ObjectId('65ba9e4fbf03889089b230bd')});
+db.orders.find({userId: ObjectId('65ba9e4fbf03889089b230bd')});
+
+// realiznado la busqueda anterior con agregation Framework
+db.users.aggregate([
+  // objetivo de busqueda
+  {
+    $match: {
+      _id: ObjectId('65ba9e4fbf03889089b230bd')
+    }
+  },
+  // enlace de busqueda
+  {
+    $lookup: {
+      from: 'orders',
+      localField: '_id',
+      foreignField: 'userId',
+      as: 'orders'
+    }
+  }
+]);

@@ -1,0 +1,3 @@
+use('platzi_store');
+
+db.orders.find({_id: ObjectId('65c12b162017133999000fd6')});

@@ -1,0 +1,28 @@
+use('platzi_store');
+
+db.products.find();
+db.stores.find();
+
+// consultando los productos dentro de la tienda
+db.stores.aggregate([
+  {
+    $match: {
+      _id: ObjectId('65c0fb883b2e8a3a316355d3')
+    }
+  },
+  {
+    $lookup: {
+      from: 'products',
+      localField: 'product_ids',
+      foreignField: '_id',
+      as: 'products'
+    }
+  },
+  {
+    $project: {
+      name: 1,
+      storeId: 1,
+      products: 1
+    }
+  }
+]);

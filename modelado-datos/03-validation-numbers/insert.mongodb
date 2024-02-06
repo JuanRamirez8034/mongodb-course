@@ -1,0 +1,10 @@
+use('platzi_store');
+
+db.products.insertOne({
+  name: 'Blue Jeans',
+  sizes: ['S', 'M', 'L'],
+  category: {
+    name: 'Pants',
+    image: 'url.image'
+  }
+});

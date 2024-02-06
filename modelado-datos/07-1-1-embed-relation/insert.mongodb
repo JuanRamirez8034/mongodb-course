@@ -1,0 +1,22 @@
+use('platzi_store');
+
+db.users.insertOne({
+  name: 'Jesus',
+  last_name: 'Lopez',
+  email: 'jesusLopez@gmail.com',
+  password: 'JEsus1234*', // vallidando contraseña con regex
+  role: 'customer',// enum
+  age: 20,         // number
+  isSingle: false, // boolean,
+  // social_networks: ['instagram', 'thread'] // atributo no valido
+  address: {
+    street: 'Calle 89E',
+    city: 'San Fancico',
+    zip: '2011',
+  },
+  shipping_address: {
+    street: 'Calle 92C',
+    city: 'San Francisco',
+    zip: '3032'
+  }
+});

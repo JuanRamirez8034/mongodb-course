@@ -1,0 +1,18 @@
+use('platzi_store');
+
+db.orders.insertOne({
+  userId: ObjectId('65ba9dc419adaa0955e4187b'),
+  date: '2024-02-01',
+  items: [
+    {
+      name: 'Camisa',
+      proce: 100,
+      qty: 1
+    },
+    {
+      name: 'Calsetines',
+      price: 25,
+      qty: 3
+    }
+  ]
+});

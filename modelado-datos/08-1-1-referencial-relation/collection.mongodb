@@ -1,0 +1,71 @@
+use('platzi_store');
+
+db.getCollectionInfos();
+
+db.runCommand({
+  collMod: 'stores',
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "storeId",
+        "email",
+        "name",
+        "address"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "storeId": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "address": {
+          "bsonType": "string"
+        }
+      }
+    }
+  }
+});
+
+db.runCommand({
+  collMod: 'stores_details',
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "storeId",
+        "manager"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "storeId": {
+          "bsonType": "string"
+        },
+        "description": {
+          "bsonType": "string"
+        },
+        "manager": {
+          "bsonType": "object",
+          "properties": {
+            "email": {
+              "bsonType": "string",
+            },
+            "cellphone": {
+              "bsonType": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+});

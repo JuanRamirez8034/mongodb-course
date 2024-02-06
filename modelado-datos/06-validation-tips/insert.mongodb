@@ -1,0 +1,12 @@
+use('platzi_store');
+
+db.users.insertOne({
+  name: 'Juan',
+  last_name: 'Ramirez',
+  email: 'juanramirez8034@gmail.com',
+  password: 'JUan1234*', // vallidando contraseña con regex
+  role: 'admin',   // enum
+  age: 20,         // number
+  isSingle: false, // boolean,
+  // social_networks: ['instagram', 'thread'] // atributo no valido
+});
